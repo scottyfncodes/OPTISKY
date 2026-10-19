@@ -1,0 +1,19 @@
+{
+  "name": "optisky-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OptiSky marketing website — static, no build step.",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "playwright test",
+    "brand-images": "node scripts/render-brand-images.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}
