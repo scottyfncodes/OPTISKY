@@ -66,6 +66,10 @@ function checkHtml(file) {
   const phoneDigits = [...html.matchAll(/\(\d{3}\)\s?\d{3}-\d{4}/g)].map((m) => m[0]);
   for (const p of phoneDigits) if (p !== PHONE_TEXT) fail(file, `unexpected phone number text ${p}`);
 
+  // Arrows like ↗ render as colour emoji on iOS; use the inline SVG icon instead.
+  const emojiProne = html.match(/[\u2196-\u2199\u2194\u2195\u21A9\u21AA\u2934\u2935\u27A1\u2B05-\u2B07]/g);
+  if (emojiProne) fail(file, `emoji-prone arrow character(s): ${[...new Set(emojiProne)].join(' ')}`);
+
   // External links open safely.
   for (const tag of html.match(/<a\b[^>]*target="_blank"[^>]*>/g) ?? []) {
     if (!/rel="[^"]*noopener/.test(tag)) fail(file, `target=_blank without rel=noopener: ${tag.slice(0, 80)}`);
