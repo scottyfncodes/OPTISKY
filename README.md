@@ -43,6 +43,16 @@ These come from the client's supplied site package and were cross-checked agains
 | Location | Addison, Texas |
 | Aircraft listings | https://www.controller.com/listings/for-sale/optisky/aircraft/?AccountCRMID=614910 |
 
+## Content sources
+
+Service copy uses only claims from the client's supplied package or OptiSky's own published material (the older optisky.com pages and its Controller.com listings). Before adding any of the following, get owner confirmation:
+
+- Aircraft appraisals and financing (listed on the older optisky.com, not in the supplied package)
+- Insurance carrier names, coverage classes, excess-liability programs, or agent licensing statements
+- Team names, titles, bios, or prior employers
+- Founding year or transaction history
+- A street address or email address
+
 ## Assets
 
 - `optisky-horizontal-white.svg` and `optisky-wing.svg` are the supplied artwork. Only their `viewBox` was tightened to remove built-in padding, so the logo sizes correctly; the vector paths are unchanged.
