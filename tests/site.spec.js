@@ -59,6 +59,33 @@ test.describe('OptiSky home page', () => {
     await expect(page.locator('#contact a.contact-phone')).toHaveText(/\(972\) 848-2022/);
   });
 
+  test('primary CTA is "Talk with OptiSky" and leads to the contact section', async ({ page }, testInfo) => {
+    await page.goto('/');
+    const primaries = page.locator('a.nav-cta, .hero .button--primary, .intro-body .text-link');
+    await expect(primaries).toHaveCount(3);
+    for (const cta of await primaries.all()) {
+      await expect(cta).toHaveText(/Talk with OptiSky/);
+      await expect(cta).toHaveAttribute('href', '#contact');
+    }
+    await page.locator('.hero .button--primary').click();
+    await expect(page).toHaveURL(/#contact$/);
+    await expect(page.locator('#contact h2')).toBeInViewport();
+    await expect(page.locator('#contact .button--primary')).toHaveAttribute('href', PHONE);
+  });
+
+  test('each service has concrete deliverables and its own call CTA', async ({ page }) => {
+    await page.goto('/');
+    const services = page.locator('.service');
+    await expect(services).toHaveCount(3);
+    const expected = [/Acquire & sell/i, /Manage/i, /Protect/i];
+    for (const [i, service] of (await services.all()).entries()) {
+      await expect(service.locator('.service-index')).toHaveText(expected[i]);
+      expect(await service.locator('.service-list li').count()).toBeGreaterThanOrEqual(3);
+      await expect(service.locator('.service-link')).toHaveAttribute('href', PHONE);
+    }
+    await expect(services.nth(2).locator('.service-link')).toHaveText(/insurance comparison/i);
+  });
+
   test('aircraft listings link opens Controller.com safely', async ({ page }) => {
     await page.goto('/');
     const link = page.locator('#aircraft a.button');
