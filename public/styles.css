@@ -167,6 +167,7 @@ em { font-style: normal; color: var(--gold); }
 .button--primary:hover { background: var(--gold-light); }
 .button--outline { border-color: var(--gold); color: var(--gold-light); }
 .button--outline:hover { background: var(--gold); color: var(--deep); }
+.icon-external { flex: none; width: 0.875rem; height: 0.875rem; }
 .button--ghost { border-color: #b9c0c5; color: var(--ink); }
 .button--ghost:hover { border-color: var(--ink); }
 
