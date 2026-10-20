@@ -109,6 +109,13 @@ for (const needed of ['#about', '#expertise', '#approach', '#aircraft', '#contac
 }
 if (!index.includes(LISTINGS_URL)) fail('index.html', 'aircraft listings link missing');
 
+// Social previews need absolute image URLs, or iMessage/LinkedIn/Facebook show none.
+for (const m of index.matchAll(/<meta (?:property|name)="(og:image|twitter:image|og:url)" content="([^"]*)"/g)) {
+  if (!m[2].startsWith('https://')) fail('index.html', `${m[1]} must be an absolute https URL`);
+  else if (m[1] !== 'og:url') assertLocal('index.html', new URL(m[2]).pathname);
+}
+if (!/property="og:image" content="https:/.test(index)) fail('index.html', 'og:image missing or not absolute');
+
 // CSS url() references resolve.
 const css = readFileSync(join(pub, 'styles.css'), 'utf8');
 for (const m of css.matchAll(/url\("?([^")]+)"?\)/g)) assertLocal('styles.css', m[1]);
