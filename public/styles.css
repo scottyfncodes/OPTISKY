@@ -181,10 +181,10 @@ em { font-style: normal; color: var(--gold); }
   text-decoration: none;
   border-bottom: 1px solid var(--gold);
 }
-.text-link span { color: var(--gold-ink); transition: transform .2s var(--ease); }
+.text-link span { color: var(--gold-ink); }
 .text-link--light { color: #fff; }
 .text-link--light span { color: var(--gold); }
-.text-link:hover span { transform: translateX(4px); }
+.text-link:hover, .service-link:hover { border-bottom-color: currentColor; }
 
 /* ---------- Header ---------- */
 
@@ -201,9 +201,6 @@ em { font-style: normal; color: var(--gold); }
 .site-header.is-open {
   background: rgba(7, 28, 51, .97);
   border-bottom-color: rgba(255, 255, 255, .08);
-}
-@supports (backdrop-filter: blur(8px)) {
-  .site-header.is-solid { background: rgba(7, 28, 51, .88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 }
 
 .header-inner {
@@ -360,9 +357,7 @@ em { font-style: normal; color: var(--gold); }
   min-height: 24rem;
   padding: clamp(1.75rem, 1rem + 2vw, 2.5rem);
   background: var(--panel);
-  transition: background-color .25s var(--ease);
 }
-.service:hover { background: #133150; }
 .service-index {
   display: flex;
   align-items: center;
@@ -416,8 +411,6 @@ em { font-style: normal; color: var(--gold); }
   letter-spacing: 0.04em;
   text-decoration: none;
 }
-.service-link span[aria-hidden] { transition: transform .2s var(--ease); }
-.service-link:hover span[aria-hidden] { transform: translateX(4px); }
 
 /* ---------- Approach ---------- */
 
@@ -469,12 +462,6 @@ em { font-style: normal; color: var(--gold); }
   place-items: center;
   align-self: stretch;
   min-height: 26rem;
-}
-.aircraft-art::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(closest-side, rgba(40, 74, 108, .75), rgba(12, 36, 60, 0));
 }
 .art-orbit {
   position: absolute;
