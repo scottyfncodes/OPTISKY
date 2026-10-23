@@ -2,7 +2,7 @@
 
 Marketing site for **OptiSky, LLC** — aircraft acquisition and sales, aircraft management, and aviation insurance support through OptiSurance. Built and maintained by HaveAnApp.
 
-It is a static, single-page site: plain HTML, CSS, and a small script. There is no framework, backend, database, form handler, or third-party tracking.
+It is a static, single-page site: plain HTML, CSS, and a small script. There is no framework, backend, database, or form handler. The only outside script is HaveAnApp Pulse, which counts page views anonymously with no cookies (allowed in the CSP in `vercel.json`).
 
 ## Structure
 
