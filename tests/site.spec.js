@@ -15,7 +15,7 @@ test.describe('OptiSky home page', () => {
 
     await page.goto('/', { waitUntil: 'networkidle' });
     // Bring lazy images into view so their requests are covered too.
-    await page.locator('.art-wing').scrollIntoViewIfNeeded();
+    await page.locator('#aircraft').scrollIntoViewIfNeeded();
     await page.locator('.site-footer').scrollIntoViewIfNeeded();
     await page.waitForLoadState('networkidle');
 
@@ -70,10 +70,10 @@ test.describe('OptiSky home page', () => {
     await page.locator('.hero .button--primary').click();
     await expect(page).toHaveURL(/#contact$/);
     await expect(page.locator('#contact h2')).toBeInViewport();
-    await expect(page.locator('#contact .button--primary')).toHaveAttribute('href', PHONE);
+    await expect(page.locator('#contact [data-call-button]')).toHaveAttribute('href', PHONE);
   });
 
-  test('each service has concrete deliverables and its own call CTA', async ({ page }) => {
+  test('each service has concrete deliverables and its own CTA', async ({ page }, testInfo) => {
     await page.goto('/');
     const services = page.locator('.service');
     await expect(services).toHaveCount(3);
@@ -81,7 +81,8 @@ test.describe('OptiSky home page', () => {
     for (const [i, service] of (await services.all()).entries()) {
       await expect(service.locator('.service-index')).toHaveText(expected[i]);
       expect(await service.locator('.service-list li').count()).toBeGreaterThanOrEqual(3);
-      await expect(service.locator('.service-link')).toHaveAttribute('href', PHONE);
+      // Touch devices call directly; mouse devices go to the contact section.
+      await expect(service.locator('.service-link')).toHaveAttribute('href', isMobile(testInfo) ? PHONE : '#contact');
     }
     await expect(services.nth(2).locator('.service-link')).toHaveText(/insurance comparison/i);
   });
@@ -101,6 +102,30 @@ test.describe('OptiSky home page', () => {
     const body = await res.text();
     expect(body).toContain('TEL;TYPE=WORK,VOICE:+1-972-848-2022');
     expect(body).toContain('Addison;TX');
+  });
+
+  test('desktop contact card offers to copy the number instead of dialing', async ({ page, context }, testInfo) => {
+    test.skip(isMobile(testInfo), 'desktop layout only');
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await page.goto('/');
+    await expect(page.locator('[data-call-button]')).toBeHidden();
+    const copy = page.locator('[data-copy-phone]');
+    await expect(copy).toBeVisible();
+    await copy.click();
+    await expect(copy).toHaveText('Number copied');
+    await expect(page.locator('[data-copy-status]')).toHaveText(/copied/);
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('(972) 848-2022');
+    await expect(page.locator('#contact a.contact-phone')).toHaveAttribute('href', PHONE);
+  });
+
+  test('service lists are always open on desktop', async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo), 'desktop layout only');
+    await page.goto('/');
+    for (const el of await page.locator('.service-more').all()) {
+      await expect(el).toHaveAttribute('open', '');
+      await expect(el.locator('summary')).toBeHidden();
+      await expect(el.locator('.service-list li').first()).toBeVisible();
+    }
   });
 
   test('desktop navigation reaches each section', async ({ page }, testInfo) => {
@@ -183,10 +208,24 @@ test.describe('mobile navigation', () => {
     await expect(page.locator('#primary-nav a[href="#expertise"]')).toBeFocused();
   });
 
-  test('header call button is a direct phone link', async ({ page }) => {
+  test('header call button is a labelled, direct phone link', async ({ page }) => {
     const call = page.locator('.header-call');
     await expect(call).toBeVisible();
     await expect(call).toHaveAttribute('href', PHONE);
+    await expect(call).toHaveText('Call');
+  });
+
+  test('service lists fold away and open on tap', async ({ page }) => {
+    const first = page.locator('.service-more').first();
+    await expect(first).not.toHaveAttribute('open', '');
+    await expect(first.locator('.service-list')).toBeHidden();
+    await first.locator('summary').tap();
+    await expect(first.locator('.service-list li').first()).toBeVisible();
+  });
+
+  test('contact card keeps the call button', async ({ page }) => {
+    await expect(page.locator('#contact [data-call-button]')).toBeVisible();
+    await expect(page.locator('[data-copy-phone]')).toBeHidden();
   });
 
   test('primary tap targets are at least 44px', async ({ page }) => {
