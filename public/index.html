@@ -52,7 +52,7 @@
   }
   </script>
   <!-- HaveAnApp Pulse: anonymous, cookieless page view counts. -->
-  <script defer src="https://haveanapp-pulse-collect.vercel.app/p.js" data-app="optisky"></script>
+  <script defer src="https://haveanapp-pulse-collect.vercel.app/p.js" data-app="optisky" data-outbound="true"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -74,7 +74,8 @@
       </nav>
 
       <a class="header-call" href="tel:+19728482022" aria-label="Call OptiSky at (972) 848-2022">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+        <span aria-hidden="true">Call</span>
       </a>
       <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
         <span class="menu-toggle-box" aria-hidden="true"><span></span><span></span></span>
@@ -124,20 +125,19 @@
           </div>
         </div>
 
-        <ul class="proof" role="list" aria-label="OptiSky at a glance">
-          <li>
-            <p class="proof-figure" aria-hidden="true">40<span>+</span></p>
-            <p class="proof-label">Years of aviation experience</p>
-          </li>
-          <li>
-            <p class="proof-figure" aria-hidden="true">KADS</p>
-            <p class="proof-label">Based at Addison Airport, Texas</p>
-          </li>
-          <li>
-            <p class="proof-figure" aria-hidden="true">1</p>
-            <p class="proof-label">Point of contact for acquisition, management, and insurance</p>
-          </li>
-        </ul>
+        <div class="proof">
+          <p class="proof-lead"><span class="proof-figure">40<span>+</span></span> <span class="proof-label">years of aviation experience</span></p>
+          <dl class="proof-facts">
+            <div>
+              <dt>Based at</dt>
+              <dd>Addison Airport (KADS), Texas</dd>
+            </div>
+            <div>
+              <dt>Your contact</dt>
+              <dd>One team for acquisition, management, and insurance</dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </section>
 
@@ -156,38 +156,47 @@
             <p class="service-index"><span>01</span> Acquire &amp; sell</p>
             <h3>Aircraft acquisition and sales</h3>
             <p class="service-summary">Support from the first search to closing, whether you are buying, selling, or trading.</p>
-            <ul class="service-list" role="list" aria-label="Acquisition and sales services include">
-              <li>Market search and sourcing of candidate aircraft</li>
-              <li>Evaluation of each aircraft against your mission and budget</li>
-              <li>Market analysis to inform price</li>
-              <li>Negotiation, with transaction paperwork coordinated alongside your financial, tax, and legal advisors</li>
-              <li>Marketing and listing when you sell</li>
-            </ul>
-            <a class="service-link" href="tel:+19728482022">Discuss buying or selling <span class="visually-hidden">an aircraft by calling OptiSky</span><span aria-hidden="true">→</span></a>
+            <details class="service-more" open>
+              <summary>What’s included</summary>
+              <ul class="service-list" role="list" aria-label="Acquisition and sales services include">
+                <li>Market search and sourcing of candidate aircraft</li>
+                <li>Evaluation of each aircraft against your mission and budget</li>
+                <li>Market analysis to inform price</li>
+                <li>Negotiation, with transaction paperwork coordinated alongside your financial, tax, and legal advisors</li>
+                <li>Marketing and listing when you sell</li>
+              </ul>
+            </details>
+            <a class="service-link" href="tel:+19728482022">Discuss buying or selling <span class="visually-hidden">an aircraft with OptiSky</span><span aria-hidden="true">→</span></a>
           </li>
           <li class="service">
             <p class="service-index"><span>02</span> Manage</p>
             <h3>Aircraft management</h3>
             <p class="service-summary">Ongoing support once the aircraft is yours, so the operational details don’t all fall to you.</p>
-            <ul class="service-list" role="list" aria-label="Management services include">
-              <li>Oversight of the operational details of ownership</li>
-              <li>Flight department reviews for companies that operate their own aircraft</li>
-              <li>Guidance on ownership structures, including leasing and shared ownership</li>
-              <li>One point of contact as your needs change</li>
-            </ul>
-            <a class="service-link" href="tel:+19728482022">Discuss aircraft management <span class="visually-hidden">by calling OptiSky</span><span aria-hidden="true">→</span></a>
+            <details class="service-more" open>
+              <summary>What’s included</summary>
+              <ul class="service-list" role="list" aria-label="Management services include">
+                <li>Oversight of the operational details of ownership</li>
+                <li>Flight department reviews for companies that operate their own aircraft</li>
+                <li>Guidance on ownership structures, including leasing and shared ownership</li>
+                <li>One point of contact as your needs change</li>
+              </ul>
+            </details>
+            <a class="service-link" href="tel:+19728482022">Discuss aircraft management <span class="visually-hidden">with OptiSky</span><span aria-hidden="true">→</span></a>
           </li>
           <li class="service">
             <p class="service-index"><span>03</span> Protect</p>
             <h3>Aviation insurance through OptiSurance</h3>
             <p class="service-summary">Insurance and risk review from people who understand how aircraft are owned and flown.</p>
-            <ul class="service-list" role="list" aria-label="Insurance services include">
-              <li>Review of your current policy and coverage limits</li>
-              <li>Coverage options matched to how you operate</li>
-              <li>A no-obligation comparison through OptiSurance</li>
-            </ul>
-            <p class="service-note">Coverage, terms, and pricing are set by the insurer.</p>
-            <a class="service-link" href="tel:+19728482022">Request an insurance comparison <span class="visually-hidden">through OptiSurance by calling OptiSky</span><span aria-hidden="true">→</span></a>
+            <details class="service-more" open>
+              <summary>What’s included</summary>
+              <ul class="service-list" role="list" aria-label="Insurance services include">
+                <li>Review of your current policy and coverage limits</li>
+                <li>Coverage options matched to how you operate</li>
+                <li>A no-obligation comparison through OptiSurance</li>
+              </ul>
+              <p class="service-note">Coverage, terms, and pricing are set by the insurer.</p>
+            </details>
+            <a class="service-link" href="tel:+19728482022">Request an insurance comparison <span class="visually-hidden">through OptiSurance</span><span aria-hidden="true">→</span></a>
           </li>
         </ul>
       </div>
@@ -221,22 +230,17 @@
     </section>
 
     <section class="aircraft section--dark" id="aircraft" aria-labelledby="aircraft-title">
-      <div class="wrap aircraft-grid">
+      <div class="wrap aircraft-band">
         <div class="aircraft-copy">
           <p class="eyebrow eyebrow--gold">Aircraft available</p>
-          <h2 id="aircraft-title">Your next aircraft may be waiting.</h2>
-          <p>Browse the aircraft OptiSky currently has listed for sale, then talk with us about fit, condition, and the full cost of ownership.</p>
-          <div class="aircraft-actions">
-            <a class="button button--outline" href="https://www.controller.com/listings/for-sale/optisky/aircraft/?AccountCRMID=614910" target="_blank" rel="noopener">
-              View current aircraft <svg class="icon-external" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg><span class="visually-hidden">(opens Controller.com in a new tab)</span>
-            </a>
-            <p class="fine-print">Listings are hosted on Controller.com and open in a new tab.</p>
-          </div>
+          <h2 id="aircraft-title">See what OptiSky has for sale.</h2>
+          <p>Browse the current listings, then talk with us about fit, condition, and the full cost of ownership.</p>
         </div>
-        <div class="aircraft-art" aria-hidden="true">
-          <div class="art-orbit"></div>
-          <img class="art-wing" src="/assets/optisky-wing.svg" width="2020" height="507" alt="" loading="lazy" decoding="async">
-          <span class="art-label">The next chapter<br>starts here</span>
+        <div class="aircraft-actions">
+          <a class="button button--outline" href="https://www.controller.com/listings/for-sale/optisky/aircraft/?AccountCRMID=614910" target="_blank" rel="noopener" data-pulse-target="aircraft-section">
+            View current aircraft <svg class="icon-external" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path d="M5 3h8v8M13 3 3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg><span class="visually-hidden">(opens Controller.com in a new tab)</span>
+          </a>
+          <p class="fine-print">Listings are hosted on Controller.com.</p>
         </div>
       </div>
     </section>
@@ -248,9 +252,11 @@
         <p class="contact-lede">Tell us about the aircraft decision in front of you, whether that’s buying, selling, management, or insurance. A phone call is the quickest way to start.</p>
         <a class="contact-phone" href="tel:+19728482022"><span class="visually-hidden">Call OptiSky at </span>(972) 848-2022</a>
         <div class="contact-actions">
-          <a class="button button--primary" href="tel:+19728482022">Call OptiSky</a>
+          <a class="button button--primary" href="tel:+19728482022" data-call-button>Call OptiSky</a>
+          <button class="button button--primary" type="button" data-copy-phone hidden>Copy number</button>
           <a class="button button--ghost" href="/optisky.vcf" download="OptiSky.vcf">Save contact</a>
         </div>
+        <p class="copy-status" data-copy-status role="status"></p>
         <div class="contact-ready">
           <p class="contact-ready-title">Helpful to have ready</p>
           <ul role="list">
@@ -277,7 +283,7 @@
           <li><a href="#expertise">Services</a></li>
           <li><a href="#approach">Approach</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li><a href="https://www.controller.com/listings/for-sale/optisky/aircraft/?AccountCRMID=614910" target="_blank" rel="noopener">Aircraft for sale <span class="visually-hidden">(opens Controller.com in a new tab)</span></a></li>
+          <li><a href="https://www.controller.com/listings/for-sale/optisky/aircraft/?AccountCRMID=614910" target="_blank" rel="noopener" data-pulse-target="footer">Aircraft for sale <span class="visually-hidden">(opens Controller.com in a new tab)</span></a></li>
         </ul>
       </nav>
       <address class="footer-contact">

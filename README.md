@@ -2,7 +2,7 @@
 
 Marketing site for **OptiSky, LLC** — aircraft acquisition and sales, aircraft management, and aviation insurance support through OptiSurance. Built and maintained by HaveAnApp.
 
-It is a static, single-page site: plain HTML, CSS, and a small script. There is no framework, backend, database, or form handler. The only outside script is HaveAnApp Pulse, which counts page views anonymously with no cookies (allowed in the CSP in `vercel.json`).
+It is a static, single-page site: plain HTML, CSS, and a small script. There is no framework, backend, database, or form handler. The only outside script is HaveAnApp Pulse, which counts page views anonymously with no cookies (allowed in the CSP in `vercel.json`). It also records a few actions so we can see what brings in calls: `call_click` (with the section it came from), `service_click`, `copy_number`, `save_contact`, and `outbound_click` for the Controller.com listings.
 
 ## Structure
 
@@ -10,7 +10,7 @@ It is a static, single-page site: plain HTML, CSS, and a small script. There is 
 public/                 Everything that is deployed
   index.html            The page
   styles.css            All styles (tokens at the top)
-  script.js             Mobile menu, header state, footer year
+  script.js             Mobile menu, header state, desktop contact behaviour, service toggles, Pulse events, footer year
   404.html              Branded not-found page
   assets/               Logo SVGs, hero images, self-hosted fonts (OFL)
   optisky.vcf           "Save contact" card
