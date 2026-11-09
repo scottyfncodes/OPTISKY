@@ -171,6 +171,7 @@ em { font-style: normal; color: var(--gold); }
 .icon-external { flex: none; width: 0.875rem; height: 0.875rem; }
 .button--ghost { border-color: #b9c0c5; color: var(--ink); }
 .button--ghost:hover { border-color: var(--ink); }
+.button:active { filter: brightness(0.92); }
 
 .text-link {
   display: inline-flex;
@@ -186,6 +187,18 @@ em { font-style: normal; color: var(--gold); }
 .text-link--light { color: #fff; }
 .text-link--light span { color: var(--gold); }
 .text-link:hover, .service-link:hover { border-bottom-color: currentColor; }
+.text-link:hover { color: var(--gold-ink); }
+.text-link--light:hover, .service-link:hover { color: #fff; }
+.text-link:active, .service-link:active { opacity: 0.7; }
+
+/* The hero call link sits beside a 52px button: match its height, keep the underline on the text. */
+.hero-actions .text-link {
+  min-height: 3.25rem;
+  border-bottom: 0;
+  text-decoration: underline 1px var(--gold);
+  text-underline-offset: 0.45em;
+}
+.hero-actions .text-link:hover { color: var(--gold-light); text-decoration-color: currentColor; }
 
 /* ---------- Header ---------- */
 
@@ -214,7 +227,9 @@ em { font-style: normal; color: var(--gold); }
   padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
 }
 
-.brand { display: inline-flex; align-items: center; flex: none; min-height: 2.75rem; padding-block: 0.5rem; }
+.brand { display: inline-flex; align-items: center; flex: none; min-height: 2.75rem; padding-block: 0.5rem; transition: opacity .2s var(--ease); }
+.brand:hover { opacity: 0.85; }
+.brand:active { opacity: 0.7; }
 .brand-logo { width: 212px; height: auto; }
 
 .primary-nav { margin-left: auto; }
@@ -486,9 +501,10 @@ em { font-style: normal; color: var(--gold); }
   letter-spacing: -0.02em;
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color .2s var(--ease);
+  transition: border-color .2s var(--ease), color .2s var(--ease);
 }
-.contact-phone:hover { border-bottom-color: var(--gold); }
+.contact-phone:hover { border-bottom-color: var(--gold); color: var(--gold-ink); }
+.contact-phone:active { color: var(--gold-deep); }
 .contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s2); }
 .copy-status { min-height: 1.5rem; margin-top: var(--s1); color: var(--muted); font-size: 0.875rem; }
 .contact-ready {
@@ -543,7 +559,9 @@ em { font-style: normal; color: var(--gold); }
   text-decoration: none;
   transition: color .2s var(--ease);
 }
+.footer-nav a { min-width: 2.75rem; }
 .footer-nav a:hover { color: var(--gold); }
+.footer-nav a:active { opacity: 0.7; }
 .footer-contact { display: flex; flex-direction: column; font-style: normal; text-align: right; }
 .footer-contact span { display: flex; align-items: center; min-height: 2.75rem; justify-content: flex-end; }
 .footer-contact a { justify-content: flex-end; color: var(--gold); font-weight: 500; }
@@ -585,6 +603,8 @@ em { font-style: normal; color: var(--gold); }
     color: var(--gold-light);
     border: 1px solid rgba(201, 169, 107, .55);
   }
+  .header-call:active { background: rgba(201, 169, 107, .2); border-color: var(--gold); }
+  .menu-toggle:active { opacity: 0.6; }
   .menu-toggle {
     display: inline-flex;
     align-items: center;
@@ -680,7 +700,7 @@ em { font-style: normal; color: var(--gold); }
 @media (max-width: 680px) {
   .brand-logo { width: 164px; }
 
-  .eyebrow { font-size: 0.6875rem; letter-spacing: 0.16em; }
+  .eyebrow { font-size: 0.75rem; letter-spacing: 0.14em; }
   .hero-media img { object-position: 90% 62%; }
   .hero-content { padding-bottom: var(--s6); }
   .hero h1 { max-width: 10ch; }
@@ -705,6 +725,7 @@ em { font-style: normal; color: var(--gold); }
     cursor: pointer;
     list-style: none;
   }
+  .service-more > summary:active { color: var(--gold-light); }
   .service-more > summary::-webkit-details-marker { display: none; }
   .service-more > summary::after {
     content: "";
@@ -726,7 +747,7 @@ em { font-style: normal; color: var(--gold); }
 
   .footer-grid { grid-template-columns: 1fr; gap: var(--s3); padding-bottom: var(--s4); }
   .footer-brand .brand-logo { width: 180px; }
-  .footer-nav ul { gap: 0 var(--s3); }
+  .footer-nav ul { gap: var(--s1) var(--s3); }
   .footer-base { flex-direction: column; }
 }
 
