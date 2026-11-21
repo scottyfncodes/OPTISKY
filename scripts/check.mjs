@@ -120,6 +120,15 @@ if (!/property="og:image" content="https:/.test(index)) fail('index.html', 'og:i
 const css = readFileSync(join(pub, 'styles.css'), 'utf8');
 for (const m of css.matchAll(/url\("?([^")]+)"?\)/g)) assertLocal('styles.css', m[1]);
 
+// Brand colours in styles.css stay in step with the palette record.
+const palette = JSON.parse(readFileSync(join(pub, 'assets/brand/palette.json'), 'utf8'));
+const tokens = { background: '--paper', surface: '--paper-raised', primary: '--signal', text: '--ink' };
+for (const [role, token] of Object.entries(tokens)) {
+  const m = css.match(new RegExp(`${token}:\\s*(#[0-9a-fA-F]{6})`));
+  if (!m) fail('styles.css', `missing colour token ${token}`);
+  else if (m[1].toLowerCase() !== String(palette[role]).toLowerCase()) fail('styles.css', `${token} is ${m[1]}, palette.json ${role} is ${palette[role]}`);
+}
+
 // Manifest icons resolve.
 const manifest = JSON.parse(readFileSync(join(pub, 'site.webmanifest'), 'utf8'));
 for (const icon of manifest.icons) assertLocal('site.webmanifest', icon.src);
