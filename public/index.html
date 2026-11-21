@@ -156,7 +156,7 @@
           <p class="section-lede">Three areas of work, handled by one team. Start with the one in front of you; the others are there when you need them.</p>
         </div>
 
-        <ul class="service-grid" role="list">
+        <ul class="service-grid" role="list" data-plot>
           <li class="service">
             <p class="service-index">Acquire &amp; sell</p>
             <h3>Aircraft acquisition and sales</h3>
@@ -262,9 +262,14 @@
 
     <section class="contact section" id="contact" aria-labelledby="contact-title">
       <div class="wrap contact-inner">
-        <div class="chart chart--destination" aria-hidden="true">
+        <div class="chart chart--destination" aria-hidden="true" data-plot>
           <svg class="chart-overlay" viewBox="0 0 800 520" preserveAspectRatio="xMidYMax slice" focusable="false">
-            <path class="chart-route chart-route--static" d="M820 150 C 640 190, 420 300, 246 358"/>
+            <defs>
+              <mask id="arrive-reveal" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1000" height="720">
+                <path class="chart-route-mask" d="M820 150 C 640 190, 420 300, 246 358" pathLength="1"/>
+              </mask>
+            </defs>
+            <path class="chart-route" d="M820 150 C 640 190, 420 300, 246 358" mask="url(#arrive-reveal)"/>
             <g class="waypoint waypoint--dest" transform="translate(246 358)">
               <circle r="13"/><circle class="waypoint-dot" r="3.5"/>
               <path d="M0 -24V-17M0 17V24M-24 0H-17M17 0H24"/>

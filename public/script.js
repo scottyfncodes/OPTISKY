@@ -110,6 +110,26 @@
     else if (href.endsWith('.vcf')) track('save_contact');
   });
 
+  // Plot the services route and the route into the contact waypoint the first
+  // time each comes into view. Without motion (or an observer) they show complete.
+  const plots = document.querySelectorAll('[data-plot]');
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (plots.length) {
+    if (!('IntersectionObserver' in window)) {
+      plots.forEach((el) => el.classList.add('is-plotted'));
+    } else {
+      if (!calm) plots.forEach((el) => el.classList.add('will-plot'));
+      const watcher = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-plotted');
+          watcher.unobserve(entry.target);
+        });
+      }, { threshold: 0.2 });
+      plots.forEach((el) => watcher.observe(el));
+    }
+  }
+
   // Footer year
   const year = document.querySelector('[data-year]');
   if (year) year.textContent = String(new Date().getFullYear());

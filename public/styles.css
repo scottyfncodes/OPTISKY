@@ -716,6 +716,25 @@ section[id] { scroll-margin-top: var(--header-h); }
   .service-more { border-top: 1px solid var(--on-ink-rule); padding-top: var(--s3); }
 }
 
+/* Moments: the legs route and the arrival route plot once on first view.
+   script.js adds .will-plot only when motion is allowed, then .is-plotted. */
+.service-grid.will-plot::before { transform: scaleY(0); transform-origin: top; }
+.service-grid.will-plot .service::before { opacity: 0; transform: scale(0.4); }
+.chart--destination.will-plot .chart-route-mask { stroke-dashoffset: 1; }
+.chart--destination.will-plot .waypoint--dest { opacity: 0; }
+@media (min-width: 921px) {
+  .service-grid.will-plot::before { transform: scaleX(0); transform-origin: left; }
+}
+.service-grid.is-plotted::before { transform: none; transition: transform 1600ms linear; }
+@media (min-width: 921px) {
+  .service-grid.is-plotted::before { transition: transform 900ms var(--ease); }
+}
+.service-grid.is-plotted .service::before { opacity: 1; transform: none; transition: opacity 200ms var(--ease), transform 300ms var(--ease); }
+.service-grid.is-plotted .service:nth-child(2)::before { transition-delay: 500ms; }
+.service-grid.is-plotted .service:nth-child(3)::before { transition-delay: 1000ms; }
+.chart--destination.is-plotted .chart-route-mask { stroke-dashoffset: 0; transition: stroke-dashoffset 900ms var(--ease); }
+.chart--destination.is-plotted .waypoint--dest { opacity: 1; transition: opacity 300ms var(--ease) 800ms; }
+
 /* Approach */
 .approach-grid { display: grid; gap: var(--s6); }
 .approach-head { display: grid; gap: var(--s4); align-content: start; }
