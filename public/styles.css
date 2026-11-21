@@ -174,23 +174,19 @@ a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1.
   z-index: 100;
   top: calc(env(safe-area-inset-top) + var(--s2));
   left: var(--s2);
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--s4);
   background: var(--ink);
   color: var(--on-ink);
   font: 700 var(--fs-2)/1 var(--font-body);
   text-decoration: none;
   white-space: nowrap;
-  width: 1px; height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
+  transform: translateY(calc(-100% - env(safe-area-inset-top) - 2rem));
 }
 .skip-link:focus {
-  width: auto; height: auto;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 var(--s4);
-  clip-path: none;
+  transform: none;
   outline: 2px solid var(--signal-on-ink);
   outline-offset: 2px;
 }
@@ -677,7 +673,7 @@ h3 {
 
 .service-list { display: grid; padding-bottom: var(--s3); }
 .service-list li {
-  padding: var(--s3) 0;
+  padding: var(--s3) var(--s2);
   border-bottom: 1px solid var(--on-ink-rule);
   color: var(--on-ink-body);
 }
