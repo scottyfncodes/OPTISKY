@@ -174,17 +174,22 @@ a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1.
   z-index: 100;
   top: calc(env(safe-area-inset-top) + var(--s2));
   left: var(--s2);
-  padding: var(--s3) var(--s4);
+  padding: 0;
   background: var(--ink);
   color: var(--on-ink);
   font: 700 var(--fs-2)/1 var(--font-body);
   text-decoration: none;
+  white-space: nowrap;
   width: 1px; height: 1px;
   overflow: hidden;
   clip-path: inset(50%);
 }
 .skip-link:focus {
   width: auto; height: auto;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--s4);
   clip-path: none;
   outline: 2px solid var(--signal-on-ink);
   outline-offset: 2px;
@@ -307,6 +312,11 @@ h3 {
   align-items: center;
   min-height: 44px;
   margin-right: auto;
+  transition: opacity var(--quick) var(--ease);
+}
+.brand:active { opacity: 0.6; }
+@media (hover: hover) {
+  .brand:hover { opacity: 0.75; }
 }
 .brand-logo { width: 156px; height: auto; }
 
@@ -817,16 +827,17 @@ h3 {
   margin-top: var(--s5);
   background: var(--paper-raised);
   border: 1px solid var(--rule);
-  padding: var(--s5);
+  padding: var(--s5) var(--s4);
 }
 .contact-ready-title {
+  padding: 0 var(--s2);
   font: 600 var(--fs-1)/1.2 var(--font-display);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-muted);
   margin-bottom: var(--s3);
 }
-.contact-ready li { padding: var(--s3) 0; border-top: 1px solid var(--rule); color: var(--ink-body); }
+.contact-ready li { padding: var(--s3) var(--s2); border-top: 1px solid var(--rule); color: var(--ink-body); }
 .contact-note { margin-top: var(--s5); font-size: var(--fs-1); color: var(--ink-muted); }
 
 @media (min-width: 921px) {
@@ -852,11 +863,13 @@ h3 {
 }
 .footer-grid { display: grid; gap: var(--s6); }
 .footer-brand .brand { margin: 0; }
-.footer-nav ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.footer-nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); justify-items: start; }
 .footer-nav a, .footer-contact a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+  min-width: 44px;
+  padding-right: var(--s3);
   color: var(--on-ink);
   text-decoration: none;
   transition: color var(--quick) var(--ease);
