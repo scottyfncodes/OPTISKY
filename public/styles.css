@@ -50,20 +50,22 @@
 }
 
 :root {
-  /* Colour: chart paper, chart ink, one signal ink */
+  /* Colour: chart paper, OptiSky navy, and brass gold as the one accent */
   --paper: #F3EFE4;          /* background: every light section */
   --paper-raised: #FBF9F3;   /* surface: cards that sit on paper */
-  --ink: #17222C;            /* text, rules, and the ground of dark sections */
-  --ink-body: #3A4651;       /* body copy on paper */
-  --ink-muted: #4A5560;      /* labels and secondary text on paper (6.6:1) */
+  --ink: #071C33;            /* OptiSky navy: text, rules, and the ground of dark sections */
+  --ink-press: #16334F;      /* navy buttons when pressed or hovered */
+  --ink-body: #3A4858;       /* body copy on paper (8.4:1) */
+  --ink-muted: #4A5866;      /* labels and secondary text on paper (6.4:1) */
   --contour: #C8B89A;        /* contour lines and secondary rules, never text */
   --rule: #D9CFBC;           /* hairline rules on paper */
-  --signal: #A0185A;         /* chart magenta: the one accent */
-  --signal-press: #7E1247;
-  --on-ink: #F3EFE4;         /* text on ink */
-  --on-ink-body: #B9C2CA;    /* body on ink (8.9:1) */
-  --on-ink-rule: #33424F;    /* rules on ink */
-  --signal-on-ink: #EC77A6;  /* magenta on ink (6:1) */
+  --signal: #7D6237;         /* brass: the accent on paper, routes and waypoints (5:1) */
+  --signal-press: #5F4A29;
+  --gold: #A27A30;           /* OptiSky gold on paper: display type, routes and waypoints only (3.4:1) */
+  --on-ink: #F3EFE4;         /* text on navy */
+  --on-ink-body: #C3CED8;    /* body on navy (10.7:1) */
+  --on-ink-rule: #24405C;    /* rules on navy */
+  --signal-on-ink: #C9A96B;  /* OptiSky gold on navy (7.7:1) */
 
   /* Type */
   --font-display: "Barlow Condensed", "Barlow Condensed Fallback", "Arial Narrow", sans-serif;
@@ -140,7 +142,7 @@ ul.service-grid { padding-left: var(--s7); }
 
 a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1.5px; }
 
-::selection { background: var(--signal); color: #fff; }
+::selection { background: var(--signal-on-ink); color: var(--ink); }
 
 :focus-visible {
   outline: 2px solid var(--signal);
@@ -213,7 +215,7 @@ h1, h2 {
   text-wrap: balance;
 }
 h2 { font-size: var(--fs-5); }
-h1 em, h2 em { font-style: normal; color: var(--signal); }
+h1 em, h2 em { font-style: normal; color: var(--gold); }
 .section--dark h2 em { color: var(--signal-on-ink); }
 .h-muted { color: var(--ink-muted); }
 .section--dark .h-muted { color: var(--on-ink-body); }
@@ -251,18 +253,18 @@ h3 {
   transition: background-color var(--quick) var(--ease), color var(--quick) var(--ease), border-color var(--quick) var(--ease);
   touch-action: manipulation;
 }
-.button--primary { background: var(--signal); color: #fff; border-color: var(--signal); }
-.button--primary:active { background: var(--signal-press); border-color: var(--signal-press); }
+.button--primary { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.button--primary:active { background: var(--ink-press); border-color: var(--ink-press); }
 .button--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
 .button--ghost:active { background: var(--ink); color: var(--on-ink); }
-.button--outline { background: transparent; color: var(--on-ink); border-color: var(--on-ink); }
-.button--outline:active { background: var(--on-ink); color: var(--ink); }
+.button--outline { background: transparent; color: var(--on-ink); border-color: var(--signal-on-ink); }
+.button--outline:active { background: var(--signal-on-ink); color: var(--ink); }
 .button .icon-external { flex: none; }
 
 @media (hover: hover) {
-  .button--primary:hover { background: var(--signal-press); border-color: var(--signal-press); }
+  .button--primary:hover { background: var(--ink-press); border-color: var(--ink-press); }
   .button--ghost:hover { background: var(--ink); color: var(--on-ink); }
-  .button--outline:hover { background: var(--on-ink); color: var(--ink); }
+  .button--outline:hover { background: var(--signal-on-ink); color: var(--ink); }
 }
 
 .text-link {
@@ -388,8 +390,8 @@ h3 {
 .is-open .primary-nav .nav-cta {
   justify-content: center;
   min-height: 52px;
-  background: var(--signal);
-  color: #fff;
+  background: var(--ink);
+  color: var(--on-ink);
   font-size: var(--fs-3);
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -435,7 +437,7 @@ h3 {
 .chart-overlay { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .chart-route {
   fill: none;
-  stroke: var(--signal);
+  stroke: var(--gold);
   stroke-width: 2;
   stroke-dasharray: 7 6;
   vector-effect: non-scaling-stroke;
@@ -452,8 +454,8 @@ h3 {
 .waypoint--kads { transform: translate(498px, 252px) scale(1.7); }
 .waypoint--dest { transform: translate(246px, 358px) scale(1.7); }
 .chart-label { transform: translate(0, 62px); }
-.waypoint circle { fill: var(--paper); stroke: var(--signal); stroke-width: 3; vector-effect: non-scaling-stroke; }
-.waypoint .waypoint-dot { fill: var(--signal); stroke: none; }
+.waypoint circle { fill: var(--paper); stroke: var(--gold); stroke-width: 3; vector-effect: non-scaling-stroke; }
+.waypoint .waypoint-dot { fill: var(--gold); stroke: none; }
 .waypoint path { stroke: var(--ink); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
 
 .chart-label {
@@ -461,7 +463,7 @@ h3 {
   font-weight: 600;
   font-size: 28px;
   letter-spacing: 0.12em;
-  fill: var(--signal);
+  fill: var(--gold);
   stroke: var(--paper);
   stroke-width: 6px;
   stroke-linejoin: round;
@@ -573,7 +575,7 @@ h3 {
   color: var(--ink);
   font-variant-numeric: tabular-nums;
 }
-.proof-figure span { color: var(--signal); }
+.proof-figure span { color: var(--gold); }
 .proof-label {
   font: 600 var(--fs-2)/1.25 var(--font-display);
   letter-spacing: var(--track-label);
@@ -806,7 +808,7 @@ h3 {
   font-variant-numeric: tabular-nums;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 3px solid var(--signal);
+  border-bottom: 3px solid var(--gold);
   margin-bottom: var(--s5);
   transition: color var(--quick) var(--ease);
 }
