@@ -544,7 +544,6 @@ h3 {
 /* Sections */
 .section { padding-block: var(--section-y); }
 .section--dark { background: var(--ink); color: var(--on-ink); }
-section[id] { scroll-margin-top: var(--header-h); }
 
 /* About */
 .intro { border-top: 1px solid var(--ink); }
