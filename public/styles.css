@@ -1,12 +1,29 @@
 /* OptiSky — site styles
    Direction: a VFR sectional chart for an aircraft decision. Chart paper,
-   one magenta ink, condensed chart lettering, a strict grid with hairline
-   rules. Tokens first; components below only use tokens. */
+   OptiSky navy and gold, a classic serif for the voice, condensed chart
+   lettering for labels, a strict grid with hairline rules. Tokens first;
+   components below only use tokens. */
 
 @font-face {
-  font-family: "Barlow Condensed";
-  src: url("/assets/fonts/barlow-condensed-latin-800-normal.woff2") format("woff2");
-  font-weight: 800;
+  font-family: "Cormorant Garamond";
+  src: url("/assets/fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/assets/fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  src: url("/assets/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
@@ -44,6 +61,12 @@
 }
 
 @font-face {
+  font-family: "Cormorant Fallback";
+  src: local("Georgia"), local("Times New Roman");
+  size-adjust: 88%;
+}
+
+@font-face {
   font-family: "Archivo Fallback";
   src: local("Arial"), local("Helvetica");
   size-adjust: 102%;
@@ -68,6 +91,7 @@
   --signal-on-ink: #C9A96B;  /* OptiSky gold on navy (7.7:1) */
 
   /* Type */
+  --font-serif: "Cormorant Garamond", "Cormorant Fallback", Georgia, serif;
   --font-display: "Barlow Condensed", "Barlow Condensed Fallback", "Arial Narrow", sans-serif;
   --font-body: "Archivo", "Archivo Fallback", "Helvetica Neue", Arial, sans-serif;
   --fs-1: 0.8125rem;   /* 13  labels */
@@ -140,7 +164,7 @@ h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
 ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
 ul.service-grid { padding-left: var(--s7); }
 
-a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1.5px; }
+a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
 
 ::selection { background: var(--signal-on-ink); color: var(--ink); }
 
@@ -207,29 +231,28 @@ a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1.
 .section--dark .eyebrow { color: var(--signal-on-ink); }
 
 h1, h2 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 0.94;
-  letter-spacing: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
-h2 { font-size: var(--fs-5); }
-h1 em, h2 em { font-style: normal; color: var(--gold); }
+h2 { font-size: 2.5rem; }
+h1 em, h2 em { font-style: italic; color: var(--gold); }
 .section--dark h2 em { color: var(--signal-on-ink); }
 .h-muted { color: var(--ink-muted); }
 .section--dark .h-muted { color: var(--on-ink-body); }
 
 h3 {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: var(--fs-4);
-  line-height: 1.2;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.12;
   text-wrap: balance;
 }
 
 @media (min-width: 921px) {
-  h2 { font-size: var(--fs-6); }
+  h2 { font-size: 3.75rem; }
 }
 
 /* Buttons and links */
@@ -238,15 +261,15 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: var(--s2);
-  min-height: 48px;
-  padding: 0 var(--s5);
-  border: 1.5px solid transparent;
+  min-height: 52px;
+  padding: 0 var(--s6);
+  border: 1px solid transparent;
   border-radius: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: var(--fs-3);
+  font-size: var(--fs-2);
   line-height: 1;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
@@ -316,7 +339,7 @@ h3 {
 @media (hover: hover) {
   .brand:hover { opacity: 0.75; }
 }
-.brand-logo { width: 156px; height: auto; }
+.brand-logo { width: 162px; height: auto; }
 
 .header-call {
   display: inline-flex;
@@ -324,10 +347,10 @@ h3 {
   gap: var(--s2);
   min-height: 44px;
   padding: 0 var(--s4);
-  border: 1.5px solid var(--ink);
+  border: 1px solid var(--ink);
   color: var(--ink);
-  font: 600 var(--fs-2)/1 var(--font-display);
-  letter-spacing: 0.1em;
+  font: 600 var(--fs-1)/1 var(--font-display);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -378,10 +401,8 @@ h3 {
 .is-open .primary-nav a {
   display: flex;
   align-items: center;
-  min-height: 56px;
-  font: 800 var(--fs-4)/1 var(--font-display);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  min-height: 60px;
+  font: 500 2rem/1 var(--font-serif);
   text-decoration: none;
   color: var(--ink);
 }
@@ -392,13 +413,13 @@ h3 {
   min-height: 52px;
   background: var(--ink);
   color: var(--on-ink);
-  font-size: var(--fs-3);
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font: 600 var(--fs-2)/1 var(--font-display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 @media (min-width: 921px) {
-  .brand-logo { width: 182px; }
+  .brand-logo { width: 189px; }
   .header-call, .menu-toggle { display: none; }
   .primary-nav { display: block; }
   .primary-nav ul { display: flex; align-items: center; gap: var(--s6); }
@@ -406,16 +427,16 @@ h3 {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    font: 600 var(--fs-2)/1 var(--font-display);
-    letter-spacing: var(--track-label);
+    font: 600 var(--fs-1)/1 var(--font-display);
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--ink);
     transition: color var(--quick) var(--ease);
   }
   .primary-nav .nav-cta {
-    padding: 0 var(--s4);
-    border: 1.5px solid var(--ink);
+    padding: 0 var(--s5);
+    border: 1px solid var(--ink);
     transition: background-color var(--quick) var(--ease), color var(--quick) var(--ease);
   }
   .primary-nav a:active { color: var(--signal); }
@@ -456,7 +477,7 @@ h3 {
 .chart-label { transform: translate(0, 62px); }
 .waypoint circle { fill: var(--paper); stroke: var(--gold); stroke-width: 3; vector-effect: non-scaling-stroke; }
 .waypoint .waypoint-dot { fill: var(--gold); stroke: none; }
-.waypoint path { stroke: var(--ink); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+.waypoint path { stroke: var(--ink); stroke-width: 2; vector-effect: non-scaling-stroke; }
 
 .chart-label {
   font-family: var(--font-display);
@@ -505,8 +526,9 @@ h3 {
 .hero-content .eyebrow { margin-bottom: var(--s3); }
 
 .hero h1 {
-  font-size: var(--fs-6);
-  max-width: 12ch;
+  font-size: 3.5rem;
+  line-height: 1.04;
+  max-width: 11ch;
   margin-bottom: var(--s4);
 }
 
@@ -529,7 +551,7 @@ h3 {
   .hero-legend-reach { display: inline; }
   .waypoint--kads { transform: translate(498px, 252px) scale(1.15); }
   .waypoint--dest { transform: translate(246px, 358px) scale(1.15); }
-  .chart-label { font-size: 19px; transform: translate(0, 44px); }
+  .chart-label { font-size: 13px; letter-spacing: 0.22em; transform: translate(0, 40px); }
   .chart--departure {
     position: absolute;
     top: 0;
@@ -545,7 +567,7 @@ h3 {
   .hero-legend, .hero-content { position: relative; z-index: 1; }
   .hero-legend { background: var(--paper); }
   .hero-content { padding-top: var(--s9); }
-  .hero h1 { font-size: var(--fs-8); max-width: 9ch; margin-bottom: var(--s5); }
+  .hero h1 { font-size: 5.5rem; max-width: 7em; margin-bottom: var(--s6); }
   .hero-copy { font-size: var(--fs-3); max-width: 34ch; margin-bottom: var(--s6); }
 }
 
@@ -571,9 +593,9 @@ h3 {
   border-bottom: 1px solid var(--rule);
 }
 .proof-figure {
-  font: 800 var(--fs-7)/0.9 var(--font-display);
+  font: 500 6rem/0.9 var(--font-serif);
   color: var(--ink);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 .proof-figure span { color: var(--gold); }
 .proof-label {
@@ -757,9 +779,9 @@ h3 {
 }
 .step-num {
   grid-row: span 2;
-  font: 800 var(--fs-6)/0.8 var(--font-display);
-  color: var(--signal);
-  font-variant-numeric: tabular-nums;
+  font: italic 500 3.25rem/0.8 var(--font-serif);
+  color: var(--gold);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 .steps p { color: var(--ink-body); }
 
@@ -804,11 +826,11 @@ h3 {
   display: inline-flex;
   align-items: center;
   min-height: 56px;
-  font: 800 var(--fs-6)/1 var(--font-display);
-  font-variant-numeric: tabular-nums;
+  font: 500 3.25rem/1.1 var(--font-serif);
+  font-variant-numeric: lining-nums tabular-nums;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 3px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
   margin-bottom: var(--s5);
   transition: color var(--quick) var(--ease);
 }
@@ -849,7 +871,7 @@ h3 {
     margin: 0;
     border: 1px solid var(--rule);
   }
-  .contact-phone { font-size: var(--fs-7); }
+  .contact-phone { font-size: 5rem; }
   .contact-ready { justify-self: start; min-width: 60%; }
 }
 
